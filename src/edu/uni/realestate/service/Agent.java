@@ -14,20 +14,20 @@ import java.util.Scanner;
 import java.util.function.Function;
 
 public class Agent {
-
-    // ----- registry (bonus): one entry per concrete property type -----
+    /*These are lookup tbales so instead of storing data like numbers and text they store methods*/
+    // registry (bonus): one entry per concrete property type
     // Key = "<property type> <deal type>". Adding a new type only needs one new
     // entry in each map; the logic of addProperty(Scanner) never changes.
     private static final Map<String, Function<Scanner, Map<String, String>>> PROMPTS = Map.of(
-            "house rental",       HouseRental::promptInit,
-            "house purchase",     HousePurchase::promptInit,
-            "apartment rental",   ApartmentRental::promptInit,
-            "apartment purchase", ApartmentPurchase::promptInit
+            "house rental",HouseRental::promptInit,
+            "house purchase",HousePurchase::promptInit,
+            "apartment rental",ApartmentRental::promptInit,
+            "apartment purchase",ApartmentPurchase::promptInit
     );
 
     private static final Map<String, Function<Map<String, String>, Property>> FACTORIES = Map.of(
-            "house rental",       HouseRental::new,
-            "house purchase",     HousePurchase::new,
+            "house rental",HouseRental::new,
+            "house purchase",HousePurchase::new,
             "apartment rental",   ApartmentRental::new,
             "apartment purchase", ApartmentPurchase::new
     );
@@ -36,7 +36,7 @@ public class Agent {
 
     public Agent() {
         properties = new ArrayList<>();
-    }
+    }//creating an empty list.
 
     public void addProperty(Property p) {
         if (p == null) throw new IllegalArgumentException("Property cannot be null");
@@ -44,6 +44,7 @@ public class Agent {
     }
 
     public void addProperty(Scanner in) {
+        /*used by menu option 1. method overloading*/
         String type = ask(in, "Property type (house, apartment): ", "house", "apartment");
         String deal = ask(in, "Deal type (rental, purchase): ", "rental", "purchase");
         String key = type + " " + deal;
@@ -54,7 +55,7 @@ public class Agent {
         System.out.println("Added property #" + p.getId() + ".");
     }
 
-    public void displayProperties(boolean showAll) {
+    public void displayProperties(boolean showAll) {// loops throguh the list and shows every property, only the ones where isAvailable is true
         int shown = 0;
         for (Property p : properties) {
             if (showAll || p.isAvailable()) {
@@ -70,14 +71,14 @@ public class Agent {
 
     public boolean closeDeal(int id) {
         Property p = findById(id);
-        if (p == null || !p.isAvailable()) {
+        if (p == null || !p.isAvailable()) {// if it doesnt exist or it is not available
             return false;
         }
         p.close();
         return true;
     }
 
-    public int countAvailable() {
+    public int countAvailable() {// counts the properties that are still available
         int count = 0;
         for (Property p : properties) {
             if (p.isAvailable()) count++;
@@ -85,11 +86,11 @@ public class Agent {
         return count;
     }
 
-    public List<Property> getProperties() {
+    public List<Property> getProperties() {// this returns the list wrapped in collections.unmodifiable list, other classes can read it but cannot add or remove anything
         return Collections.unmodifiableList(properties);
     }
 
-    private Property findById(int id) {
+    private Property findById(int id) {//searching by id
         for (Property p : properties) {
             if (p.getId() == id) return p;
         }

@@ -6,19 +6,26 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class PurchaseTerms {
+    /*
+    * This class holds information about the sale including the price as well as the estimated annual property taxes.
+    * It displays composition to both ApartmentPurchase and HousePurchase since they each create one PurchaseTerms instance*/
     private double price;
     private double annualTaxes;
 
     public PurchaseTerms(Map<String, String> data) {
-        setPrice(Double.parseDouble(data.get("price")));
+        setPrice(Double.parseDouble(data.get("price")));//turning text into double
         setAnnualTaxes(Double.parseDouble(data.get("taxes")));
     }
 
-    // ----- getters -----
-    public double getPrice()       { return price; }
-    public double getAnnualTaxes() { return annualTaxes; }
+    // GETTERS ACCESSORS
+    public double getPrice(){
+        return price;
+    }
+    public double getAnnualTaxes() {
+        return annualTaxes;
+    }
 
-    // ----- private validating setters -----
+    // SETTERS MUTATORS
     private void setPrice(double value) {
         if (value <= 0) throw new IllegalArgumentException("Price must be greater than 0");
         price = value;
@@ -29,7 +36,7 @@ public class PurchaseTerms {
         annualTaxes = value;
     }
 
-    // ----- behavior -----
+    // BUSINESS LOGIC
     public void display() {
         System.out.println(String.format(Locale.US, "  Price:        %.2f EUR", price));
         System.out.println(String.format(Locale.US, "  Annual taxes: %.2f EUR", annualTaxes));

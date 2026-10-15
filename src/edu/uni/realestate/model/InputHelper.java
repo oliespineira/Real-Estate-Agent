@@ -12,7 +12,7 @@ class InputHelper {
 
     private InputHelper() { } // utility class: no instances
 
-    static String readInt(Scanner in, String prompt, int min) {
+    static String readInt(Scanner in, String prompt, int min) {//checking if what is input is actually an int
         while (true) {
             System.out.print(prompt);
             String line = in.nextLine().trim();
@@ -21,7 +21,7 @@ class InputHelper {
                 if (value >= min) {
                     return String.valueOf(value);
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {//raise error it is not actually an integer
                 // fall through to the error message
             }
             System.out.println("Please enter a number of at least " + min + ".");

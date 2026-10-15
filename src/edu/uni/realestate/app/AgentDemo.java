@@ -22,7 +22,7 @@ public class AgentDemo {
     public static void main(String[] args) {
         Agent agent = new Agent();
 
-        // ----- valid data: one map per concrete class -----
+        // valid data: one map per concrete class
         Map<String, String> houseRental = data(
                 "sqft", "1400", "beds", "3", "baths", "2",
                 "stories", "2", "garage", "attached", "fenced", "yes",
@@ -96,7 +96,7 @@ public class AgentDemo {
         }
     }
 
-    // ----- helpers -----
+    //  helpers
 
     /** Builds a map from alternating key/value arguments. */
     private static Map<String, String> data(String... keyValues) {

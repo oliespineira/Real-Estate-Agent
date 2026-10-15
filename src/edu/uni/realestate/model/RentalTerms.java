@@ -16,12 +16,12 @@ public class RentalTerms {
         setUtilities(data.get("utilities"));
     }
 
-    // ----- getters -----
+    // getters
     public double getMonthlyRent() { return monthlyRent; }
     public boolean isFurnished()   { return furnished; }
     public String getUtilities()   { return utilities; }
 
-    // ----- private validating setters -----
+    // setters
     private void setMonthlyRent(double value) {
         if (value <= 0) throw new IllegalArgumentException("Monthly rent must be greater than 0");
         monthlyRent = value;
@@ -38,11 +38,11 @@ public class RentalTerms {
         utilities = value.trim();
     }
 
-    // ----- behavior -----
+    // behaviour
     public void display() {
         System.out.println(String.format(Locale.US, "  Monthly rent: %.2f EUR", monthlyRent));
-        System.out.println("  Furnished:    " + (furnished ? "yes" : "no"));
-        System.out.println("  Utilities:    " + utilities);
+        System.out.println("  Furnished:" + (furnished ? "yes" : "no"));
+        System.out.println("  Utilities:" + utilities);
     }
 
     public static Map<String, String> promptInit(Scanner in) {
