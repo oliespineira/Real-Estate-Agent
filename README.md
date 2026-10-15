@@ -27,6 +27,7 @@ And we couldn't use an instance method here because
 
 4. Passing a Map<String, String> to constructors is flexible but not type-safe. Give one error the
    compiler would catch with a normal constructor but cannot catch with the map.
+   For example, one issue that could occur would be writing an erroneous data type in the code, like passing 14500.5 for sqft, which in this case must be an int. With a normal constructor, the compiler would reject this directly before the program runs. In the case of the map, it compiles, because every value is just a String, and it really only fails at runtime when the Property constructor throws a NumberFormatException.
 
 5. The model classes read from a Scanner. If the agent later moves to a GUI or web page, which
    classes must change? Propose where the prompting code should live instead.
