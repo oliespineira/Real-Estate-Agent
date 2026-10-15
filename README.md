@@ -26,6 +26,7 @@ The difference between hiding and overriding is that
 And we couldn't use an instance method here because 
 
 4. Passing a Map<String, String> to constructors is flexible but not type-safe. Give one error the
+   compiler would catch with a normal constructor but cannot catch with the map.
 
 5. The model classes read from a Scanner. If the agent later moves to a GUI or web page, which
    classes must change? Propose where the prompting code should live instead.
