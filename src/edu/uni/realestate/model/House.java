@@ -15,12 +15,12 @@ public abstract class House extends Property {
         setFencedYard("yes".equalsIgnoreCase(data.get("fenced")));
     }
 
-    // ----- getters -----
+    // getters accessors
     public int getStories()         { return stories; }
     public GarageType getGarage()   { return garage; }
     public boolean hasFencedYard()  { return fencedYard; }
 
-    // ----- private validating setters -----
+    // setters mutators
     private void setStories(int value) {
         if (value < 1) throw new IllegalArgumentException("Stories must be at least 1");
         stories = value;
@@ -35,7 +35,7 @@ public abstract class House extends Property {
         fencedYard = value;
     }
 
-    // ----- behavior -----
+    // behaviour
     @Override
     public void display() {
         super.display();
